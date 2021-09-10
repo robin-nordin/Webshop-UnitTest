@@ -1,10 +1,11 @@
 <template>
   <main>
-    <div v-if="products">
-      <div v-for="(product, index) in products" :key="index">
+    <div v-if="products" >
+      <div v-for="(product, index) in products" :key="index" class="test">
         <img v-bind:src=" product.image" alt="Oops!">
         <p>{{ product.title }}</p>
       <p>{{ product.price }}</p>
+      <button @click="addToCart()">add to cart</button>
       </div>
     </div>
   </main>
@@ -30,4 +31,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.test{
+  border-style: dotted;
+}
+</style>

@@ -1,6 +1,6 @@
 <template>
   <main>
-    <p>hej</p>
+    <p></p>
   </main>
 </template>
 

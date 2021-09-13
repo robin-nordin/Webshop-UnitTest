@@ -2,19 +2,16 @@
   <div id="app">
     <Shop />
     <Checkout />
-    <Shoppingcart />
   </div>
 </template>
 
 <script>
 import Shop from './views/Shop.vue'
 import Checkout from './views/Checkout.vue'
-import Shoppingcart from './components/Shoppingcart.vue'
 
 export default {
   name: 'App',
   components: {
-    Shoppingcart,
     Checkout,
     Shop
   }

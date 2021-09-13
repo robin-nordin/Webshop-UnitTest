@@ -11,7 +11,13 @@
 <script>
 export default {
 
-
+name: 'Cart', 
+data() {
+  return {
+    products: [],
+    cart: null,
+  }
+}, 
 
 
   // checkout()

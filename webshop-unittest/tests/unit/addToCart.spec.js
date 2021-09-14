@@ -3,7 +3,7 @@ import { shallowMount } from "@vue/test-utils";
 import { enableFetchMocks } from "jest-fetch-mock";
 enableFetchMocks();
 
-describe(" addToCart", () => {
+describe("Shop.vue", () => {
   //let wrapper;
   beforeEach(() => {
     fetch.mockResponseOnce(
@@ -18,7 +18,7 @@ describe(" addToCart", () => {
       })
     );
   });
-  it("should fetch", () => {
+  it("should fetch from api", () => {
     const spy = jest.spyOn(Shop.methods, "init");
     shallowMount(Shop);
 
@@ -48,12 +48,18 @@ describe(" addToCart", () => {
     expect(product).toBe(1);
   });
 
-  /*
-  it("add to cart on click", async () => {
-    const button = wrapper.toBe('button')
-    //await button.trigger("click");
-    expect(button).toBe(true);
-  });*/
+  it("triggers method on click", async () => {
+    const Method = jest.spyOn(Shop.methods, "addToCart");
+    const wrapper = shallowMount(Shop);
+    await wrapper.find("button.buttonAdd").trigger("click");
+    expect(Method).toBeCalled();
+
+    /*const wrapper = shallowMount(Shop);
+
+    await wrapper.find("button.buttonAdd").trigger("click");
+    wrapper.vm.addToCart();
+    expect(wrapper.addToCart()).toBeCalled();*/
+  });
 });
 
 /*

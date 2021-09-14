@@ -1,17 +1,14 @@
 <template>
   <main>
     <div v-if="products" class="shopStructure">
-      <div
-        v-for="(product, index) in products"
-        :key="index"
-        class="product"
-        data-test="product"
-      >
+      <div v-for="(product, index) in products" :key="index" class="product">
         <img v-bind:src="product.image" alt="Oops!" class="productImg" />
         <p>{{ product.title }}</p>
         <p>{{ product.price }}</p>
 
-        <button @click="addToCart(product)">add to cart</button>
+        <button @click="addToCart(product)" class="buttonAdd">
+          add to cart
+        </button>
       </div>
     </div>
     <div v-if="error" class="error">
@@ -19,12 +16,14 @@
     </div>
 
     <div v-if="cart" class="shopStructure">
-      <div v-for="(product, index) in cart" :key="index" class="test">
+      <div v-for="(product, index) in cart" :key="index" class="product">
         <img v-bind:src="product.image" alt="Oops!" class="productImg" />
         <p>{{ product.title }}</p>
         <p>{{ product.price }}</p>
 
-        <button @click="removeFromCart(product)">remove from cart</button>
+        <button @click="removeFromCart(product)" class="buttonRemove">
+          remove from cart
+        </button>
       </div>
     </div>
   </main>

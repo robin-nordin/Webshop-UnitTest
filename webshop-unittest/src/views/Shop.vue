@@ -24,12 +24,14 @@
       {{ error }}
     </div>
 
-    <div v-if="cart" class="shopStructure">
+    <div v-if="cart" class="carStructure">
       <div v-for="(product, index) in cart" :key="index" class="product">
         <img v-bind:src="product.image" alt="Oops!" class="productImg" />
         <p>{{ product.title }}</p>
         <p>{{ product.price }}</p>
-
+        <article>
+          <p id="totalQuantity">{{ number }}</p>
+        </article>
         <button @click="removeFromCart(product)" class="buttonRemove">
           remove from cart
         </button>
@@ -83,6 +85,7 @@ export default {
     addToCart(index) {
       this.cart.push(index);
     },
+
     removeFromCart(index) {
       this.cart.splice(index, 1);
     },

@@ -4,7 +4,6 @@ import { enableFetchMocks } from "jest-fetch-mock";
 enableFetchMocks();
 
 describe("Shop.vue", () => {
-  //let wrapper;
   beforeEach(() => {
     fetch.mockResponseOnce(
       JSON.stringify({
@@ -53,38 +52,49 @@ describe("Shop.vue", () => {
     const wrapper = shallowMount(Shop);
     await wrapper.find("button.buttonAdd").trigger("click");
     expect(Method).toBeCalled();
+  });
 
-    /*const wrapper = shallowMount(Shop);
+  // passes but doesn't work?
+  it("should remove item from cart", async () => {
+    const wrapper = shallowMount(Shop, {
+      data() {
+        return {
+          cart: [
+            {
+              id: 1,
+              title: "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
+              price: 109.95,
+              description:
+                "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
+              category: "men's clothing",
+              image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+              rating: { rate: 3.9, count: 120 },
+            },
+          ],
+        };
+      },
+    });
+    const Cart = await wrapper.find("button.buttonRemove").trigger("click");
+    const CartAll = wrapper.findAll("div.product").length;
 
-    await wrapper.find("button.buttonAdd").trigger("click");
-    wrapper.vm.addToCart();
-    expect(wrapper.addToCart()).toBeCalled();*/
+    expect(CartAll).toBe(1);
+    expect(Cart).not.toEqual(1);
+  });
+
+  describe(" increase decrease button", () => {
+    it("should display value 1 when rendered", () => {
+      const wrapper = shallowMount(Shop, {
+        data() {
+          return {
+            number: 1,
+          };
+        },
+      });
+      const expected = 1;
+      const totalQuantity = wrapper.find("#totalQuantity");
+      const value = totalQuantity.text();
+
+      expect(Number(value)).toBe(expected);
+    });
   });
 });
-
-/*
-describe(" addToCart", () => {
-  let wrapper;
-  beforeEach(() => {
-    wrapper = shallowMount(Shop);
-    enableFetchMocks();
-    fetch.mockResponseOnce(
-      JSON.stringify({
-        id: 1,
-        title: "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
-        price: 109.95,
-        description:
-          "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
-        category: "men's clothing",
-        rating: { rate: 3.9, count: 120 },
-      })
-    );
-    });
-
-  it("add to cart on click", async () => {
-    const button = wrapper.find('button');
-    await button.trigger("click");
-    const calls = fetch.mock.calls.length;
-    expect(calls).toEqual(1);
-  });
-});*/

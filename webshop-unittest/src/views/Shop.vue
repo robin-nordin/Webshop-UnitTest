@@ -9,30 +9,32 @@
         <a href="#about">About</a>
       </div>
     </header>
-    <div v-if="products" class="shopStructure">
-      <div v-for="(product, index) in products" :key="index" class="product">
-        <img v-bind:src="product.image" alt="Oops!" class="productImg" />
-        <p>{{ product.title }}</p>
-        <p>{{ product.price }}</p>
+    <div class="mainShopping">
+      <div v-if="cart" class="cartStructure">
+        <h3>Shopping Cart</h3>
+        <div v-for="(product, index) in cart" :key="index" class="cartProduct">
+          <p class="cartTitle">{{ product.title }}</p>
+          <p class="cartPrice">{{ product.price }}</p>
 
-        <button @click="addToCart(product)" class="buttonAdd">
-          add to cart
-        </button>
+          <button @click="removeFromCart(product)" class="buttonRemove">
+            Remove from Cart
+          </button>
+        </div>
       </div>
-    </div>
-    <div v-if="error" class="error">
-      {{ error }}
-    </div>
+      <div v-if="products" class="shopStructure">
+        <div v-for="(product, index) in products" :key="index" class="product">
+          <img v-bind:src="product.image" alt="Oops!" class="productImg" />
+          <p>{{ product.title }}</p>
+          <p>{{ product.price }}</p>
 
-    <div v-if="cart" class="shopStructure">
-      <div v-for="(product, index) in cart" :key="index" class="product">
-        <img v-bind:src="product.image" alt="Oops!" class="productImg" />
-        <p>{{ product.title }}</p>
-        <p>{{ product.price }}</p>
+          <button @click="addToCart(product)" class="buttonAdd">
+            Add to Cart
+          </button>
+        </div>
+      </div>
 
-        <button @click="removeFromCart(product)" class="buttonRemove">
-          remove from cart
-        </button>
+      <div v-if="error" class="error">
+        {{ error }}
       </div>
     </div>
   </main>
@@ -40,18 +42,18 @@
 
 <script>
 export default {
-  name: "Shop",
+  name: 'Shop',
   data() {
     return {
       products: [
         {
           id: 1,
-          title: "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
+          title: 'Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops',
           price: 109.95,
           description:
-            "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
+            'Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday',
           category: "men's clothing",
-          image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+          image: 'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg',
           rating: { rate: 3.9, count: 120 },
         },
       ],
@@ -61,13 +63,13 @@ export default {
 
   computed: {
     error() {
-      return this.products.length <= 0 ? "unable to get items" : "";
+      return this.products.length <= 0 ? 'unable to get items' : '';
     },
   },
 
   created() {
-    console.log("created in Shop.vue");
-    fetch("https://fakestoreapi.com/products")
+    console.log('created in Shop.vue');
+    fetch('https://fakestoreapi.com/products')
       .then((response) => response.json())
       // .then(data => (this.products.id = data.id) + (this.products.title = data.title))
       .then((data) => (this.products = data));
@@ -77,7 +79,7 @@ export default {
   },
   methods: {
     init() {
-      console.log("running init in mounted in Shop.vue");
+      console.log('running init in mounted in Shop.vue');
     },
 
     addToCart(index) {
@@ -91,9 +93,29 @@ export default {
 </script>
 
 <style>
+.mainShopping {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.cartStructure {
+  flex-direction: column;
+  width: 40%;
+}
+
 h1 {
   color: rgb(71, 70, 70);
   padding: 20px;
+}
+
+h2 {
+  padding: 20px;
+}
+
+h3 {
+  padding: 10px;
+  margin: 0;
 }
 
 .product {
@@ -107,9 +129,26 @@ h1 {
   background: white;
 }
 
+.cartProduct {
+  width: 150px;
+  height: 150px;
+  border-style: solid;
+  border-color: rgb(71, 70, 70);
+  border-radius: 3px;
+  margin: 10px;
+  padding: 5px;
+  background: white;
+}
+
 .productImg {
   width: 150px;
   height: 200px;
+}
+
+.cartTitle,
+.cartPrice {
+  font-size: small;
+  display: inline-block;
 }
 
 .shopStructure {
@@ -117,6 +156,12 @@ h1 {
   flex-direction: row;
   flex-wrap: wrap;
   background: darkgray;
+}
+
+.cartStructure {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .topnav {
@@ -146,5 +191,11 @@ h1 {
 #app {
   background-color: lightgray;
   margin: 0;
+}
+
+button {
+  padding: 3px;
+  background-color: rgb(125, 129, 128);
+  color: white;
 }
 </style>

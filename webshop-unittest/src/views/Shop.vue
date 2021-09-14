@@ -1,25 +1,30 @@
 <template>
   <main>
     <div v-if="products" class="shopStructure">
-      <div v-for="(product, index) in products" :key="index" class="test">
+      <div
+        v-for="(product, index) in products"
+        :key="index"
+        class="product"
+        data-test="product"
+      >
         <img v-bind:src="product.image" alt="Oops!" class="productImg" />
         <p>{{ product.title }}</p>
         <p>{{ product.price }}</p>
 
-        <button @click="addToCart">add to cart</button>
+        <button @click="addToCart(product)">add to cart</button>
       </div>
     </div>
     <div v-if="error" class="error">
       {{ error }}
     </div>
 
-        <div v-if="cart" class="shopStructure">
+    <div v-if="cart" class="shopStructure">
       <div v-for="(product, index) in cart" :key="index" class="test">
         <img v-bind:src="product.image" alt="Oops!" class="productImg" />
         <p>{{ product.title }}</p>
         <p>{{ product.price }}</p>
 
-        <button @click="removeFromCart(product.id)">remove from cart</button>
+        <button @click="removeFromCart(product)">remove from cart</button>
       </div>
     </div>
   </main>
@@ -31,7 +36,7 @@ export default {
   data() {
     return {
       products: [
-                {
+        {
           id: 1,
           title: "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
           price: 109.95,
@@ -42,9 +47,7 @@ export default {
           rating: { rate: 3.9, count: 120 },
         },
       ],
-      cart: [
-
-      ],
+      cart: [],
     };
   },
 
@@ -54,33 +57,28 @@ export default {
     },
   },
 
-  created() {
-    console.log("created in Shop.vue");
-    fetch("https://fakestoreapi.com/products")
-      .then((response) => response.json())
-      // .then(data => (this.products.id = data.id) + (this.products.title = data.title))
-      .then((data) => (this.products = data));
-  },
   mounted() {
     this.init();
   },
   methods: {
     init() {
-      console.log("running init in mounted in Shop.vue");
+      fetch("https://fakestoreapi.com/products")
+        .then((response) => response.json())
+        .then((data) => (this.products = data));
     },
 
     addToCart(index) {
-      this.cart.push(index)
+      this.cart.push(index);
     },
     removeFromCart(index) {
-      this.cart.splice(index, 1)
+      this.cart.splice(index, 1);
     },
   },
 };
 </script>
 
 <style>
-.test {
+.product {
   width: 200px;
   height: 350px;
   border-style: solid;

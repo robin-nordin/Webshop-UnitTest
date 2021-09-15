@@ -1,19 +1,6 @@
 <template>
   <main>
-<<<<<<< Updated upstream
-    <header>
-      <h1>Random Web Shop</h1>
-      <div class="topnav">
-        <a class="active" href="#home">Home</a>
-        <a href="#news">News</a>
-        <a href="#contact">Contact</a>
-        <a href="#about">About</a>
-      </div>
-    </header>
     <section class="mainShopping">
-=======
-    <div class="mainShopping">
->>>>>>> Stashed changes
       <div v-if="cart" class="cartStructure">
         <h3>Shopping Cart</h3>
         <div v-for="(product, index) in cart" :key="index" class="cartProduct">
@@ -36,11 +23,10 @@
           </button>
         </div>
       </div>
-
-      <div v-if="error" class="error">
-        {{ error }}
-      </div>
     </section>
+    <div v-if="error" class="error">
+      {{ error }}
+    </div>
   </main>
 </template>
 
@@ -163,32 +149,6 @@ h3 {
   flex-wrap: wrap;
   margin-top: 10px;
 }
-
-.topnav {
-  background-color: #333;
-  overflow: hidden;
-}
-
-<<<<<<< Updated upstream
-.topnav a {
-  float: left;
-  color: #f2f2f2;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-}
-
-.topnav a:hover {
-  background-color: #ddd;
-  color: black;
-}
-
-.topnav a.active {
-  background-color: rgb(125, 129, 128);
-  color: white;
-}
-
 .buttonAdd {
   padding: 3px;
   background-color: rgb(125, 129, 128);
@@ -200,11 +160,6 @@ h3 {
   border-color: rgb(88, 88, 88);
   border-style: solid;
   border-width: 2px;
-=======
-#app {
-  background-color: #FAF9F6;
-  margin: 0;
->>>>>>> Stashed changes
 }
 
 .buttonRemove {

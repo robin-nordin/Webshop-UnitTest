@@ -9,7 +9,7 @@
         <a href="#about">About</a>
       </div>
     </header>
-    <div class="mainShopping">
+    <section class="mainShopping">
       <div v-if="cart" class="cartStructure">
         <h3>Shopping Cart</h3>
         <div v-for="(product, index) in cart" :key="index" class="cartProduct">
@@ -36,7 +36,7 @@
       <div v-if="error" class="error">
         {{ error }}
       </div>
-    </div>
+    </section>
   </main>
 </template>
 
@@ -91,13 +91,27 @@ export default {
 <style>
 .mainShopping {
   display: flex;
-  width: 100%;
-  height: 100%;
+  align-items: flex-start;
+  background-color: #ddd;
+  margin-top: 1.5rem;
 }
 
 .cartStructure {
   flex-direction: column;
   width: 40%;
+  max-height: 600px;
+  border-style: solid;
+  border-color: rgb(71, 70, 70);
+  padding: 50px;
+  border-radius: 3px;
+  overflow: scroll;
+  background: white;
+}
+.shopStructure {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  background: #ddd;
 }
 
 h1 {
@@ -126,14 +140,11 @@ h3 {
 }
 
 .cartProduct {
-  width: 150px;
+  align-self: flex-start;
   height: 150px;
-  border-style: solid;
-  border-color: rgb(71, 70, 70);
-  border-radius: 3px;
-  margin: 10px;
   padding: 5px;
-  background: white;
+  border-bottom: solid;
+  border-color: rgb(71, 70, 70);
 }
 
 .productImg {
@@ -147,17 +158,11 @@ h3 {
   display: inline-block;
 }
 
-.shopStructure {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  background: darkgray;
-}
-
 .cartStructure {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  margin-top: 10px;
 }
 
 .topnav {
@@ -184,14 +189,28 @@ h3 {
   color: white;
 }
 
-#app {
-  background-color: lightgray;
-  margin: 0;
-}
-
-button {
+.buttonAdd {
   padding: 3px;
   background-color: rgb(125, 129, 128);
   color: white;
+  width: 50%;
+  box-shadow: 3px 3px 2px rgb(179, 176, 176);
+  border-radius: 3px;
+  border-width: 2px;
+  border-color: rgb(88, 88, 88);
+  border-style: solid;
+  border-width: 2px;
+}
+
+.buttonRemove {
+  border-style: solid;
+  border-width: 2px;
+  border-color: rgb(88, 88, 88);
+  padding: 3px;
+  background-color: rgb(125, 129, 128);
+  color: white;
+  width: 100%;
+  border-radius: 3px;
+  box-shadow: 3px 3px 2px rgb(179, 176, 176);
 }
 </style>

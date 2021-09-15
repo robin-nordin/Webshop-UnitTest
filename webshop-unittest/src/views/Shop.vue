@@ -67,19 +67,14 @@ export default {
     },
   },
 
-  created() {
-    console.log("created in Shop.vue");
-    fetch("https://fakestoreapi.com/products")
-      .then((response) => response.json())
-      // .then(data => (this.products.id = data.id) + (this.products.title = data.title))
-      .then((data) => (this.products = data));
-  },
   mounted() {
     this.init();
   },
   methods: {
     init() {
-      console.log("running init in mounted in Shop.vue");
+      fetch("https://fakestoreapi.com/products")
+        .then((response) => response.json())
+        .then((data) => (this.products = data));
     },
 
     addToCart(index) {

@@ -1,18 +1,15 @@
 <template>
   <div id="app">
     <Shop />
-    <Checkout />
   </div>
 </template>
 
 <script>
-import Shop from './views/Shop.vue';
-import Checkout from './views/Checkout.vue';
+import Shop from "./views/Shop.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    Checkout,
     Shop,
   },
 };

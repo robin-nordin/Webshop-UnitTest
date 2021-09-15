@@ -54,7 +54,6 @@ describe("Shop.vue", () => {
     expect(Method).toBeCalled();
   });
 
-  // passes but doesn't work?
   it("should remove item from cart", async () => {
     const wrapper = shallowMount(Shop, {
       data() {
@@ -80,21 +79,27 @@ describe("Shop.vue", () => {
     expect(CartAll).toBe(1);
     expect(Cart).not.toEqual(1);
   });
+});
 
-  describe(" increase decrease button", () => {
-    it("should display value 1 when rendered", () => {
-      const wrapper = shallowMount(Shop, {
+/*describe(" increase decrease button", () => {
+  it("should display value 1 when rendered", () => {
+    const wrapper = shallowMount(Shop);
+    const expected = 0;
+    const resultElem = wrapper.find("#result");
+    const value = resultElem.text();
+
+    expect(Number(value)).toBe(expected);
+    /* const wrapper = shallowMount(Shop, {
         data() {
           return {
             number: 1,
           };
         },
       });
-      const expected = 1;
-      const totalQuantity = wrapper.find("#totalQuantity");
+      //const expected = 1;
+      const totalQuantity = wrapper.find("#total");
       const value = totalQuantity.text();
 
-      expect(Number(value)).toBe(expected);
-    });
+      expect(Number(value)).toBe(1);
   });
-});
+}); */

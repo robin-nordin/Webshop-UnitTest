@@ -1,5 +1,6 @@
 <template>
   <main>
+    <Header />
     <section class="mainShopping">
       <div v-if="cart" class="cartStructure">
         <h3>Shopping Cart</h3>
@@ -31,8 +32,14 @@
 </template>
 
 <script>
+import Header from "../components/Header.vue";
+
 export default {
   name: "Shop",
+  components: {
+    Header,
+  },
+
   data() {
     return {
       products: [

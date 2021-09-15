@@ -1,5 +1,6 @@
 <template>
   <main>
+<<<<<<< Updated upstream
     <header>
       <h1>Random Web Shop</h1>
       <div class="topnav">
@@ -10,6 +11,9 @@
       </div>
     </header>
     <section class="mainShopping">
+=======
+    <div class="mainShopping">
+>>>>>>> Stashed changes
       <div v-if="cart" class="cartStructure">
         <h3>Shopping Cart</h3>
         <div v-for="(product, index) in cart" :key="index" class="cartProduct">
@@ -114,11 +118,6 @@ export default {
   background: #ddd;
 }
 
-h1 {
-  color: rgb(71, 70, 70);
-  padding: 20px;
-}
-
 h2 {
   padding: 20px;
 }
@@ -170,6 +169,7 @@ h3 {
   overflow: hidden;
 }
 
+<<<<<<< Updated upstream
 .topnav a {
   float: left;
   color: #f2f2f2;
@@ -200,6 +200,11 @@ h3 {
   border-color: rgb(88, 88, 88);
   border-style: solid;
   border-width: 2px;
+=======
+#app {
+  background-color: #FAF9F6;
+  margin: 0;
+>>>>>>> Stashed changes
 }
 
 .buttonRemove {
